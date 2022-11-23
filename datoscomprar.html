@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Finalizar compra </title>
+        
+        <link rel="icon" href="Imagenes/CRZ.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- --------------------------------------------- HEADER --------------------------------------------- -->
+<header class="p-3 mb-3 border-bottom sticky-top" style="background-color: white;">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <img class="bi me-2" width="40" height="32" aria-label="Bootstrap" src="Imagenes/CRZ.png">
+            </a>
+    
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li> <a href="#" class="nav-link px-2 link-secondary"> Inicio </a> </li>
+                <li> <a href="#productos" class="nav-link px-2 link-dark"> Productos </a> </li>
+            </ul>
+    
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search">
+            </form>
+    
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="Imagenes/carlos ruiz zafon.jpg" alt="..." width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small">
+                    <li> <a class="dropdown-item" href="#"> Favoritos </a> </li>
+                    <li> <a class="dropdown-item" href="#"> Carrito </a> </li>
+                    <li> <a class="dropdown-item" href="#"> Mi perfil </a> </li>
+                    <li> <hr class="dropdown-divider"> </li>
+                    <li> <a class="dropdown-item" href="#"> Cerrar Sesión </a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ---------------------------------------------- MAIN ---------------------------------------------- -->
+<main class="container">
+    <div class="row">
+        <div class="col-12 col-md-4 col-xl-4 order-md-last">
+            <div class="position-sticky" style="top: 5.5rem">
+                <!-- Muestra un resumen del pedido -->
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span> RESUMEN DE MI PEDIDO </span>
+                </h4>
+                <div class="list-group w-auto">
+                    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                        <img src="Imagenes/cart.svg" alt="twbs" width="32" height="20">
+                        <div class="d-flex gap-2 w-100 justify-content-between">
+                            <div>
+                                <h6 class="mb-0"> Subtotal del carrito </h6>
+                            </div>
+                            <small class="text-nowrap"> $ <span id="subtotalcompra"></span> </small>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                        <img src="Imagenes/truck.svg" alt="twbs" width="32" height="20">
+                        <div class="d-flex gap-2 w-100 justify-content-between">
+                            <div>
+                                <h6 class="mb-0"> Envio a domicilio </h6>
+                            </div>
+                            <small class="text-nowrap"> $ <span id="enviocompra"> </span> </small>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                        <img src="Imagenes/bag.svg" alt="twbs" width="32" height="20">
+                        <div class="d-flex gap-2 w-100 justify-content-between">
+                            <div>
+                                <h6 class="mb-0"> Total de la compra </h6>
+                            </div>
+                            <small class="text-nowrap"> $ <span id="totalcompra"> </span> </small>
+                        </div>
+                    </a>
+                </div>
+                <!-- Muestra el carrito -->
+                <h4 class="d-flex justify-content-between align-items-center mb-3 py-2">
+                    <span> CARRITO </span>
+                    <span class="badge rounded-pill fondovioleta" id="cantidadproductos"> </span>
+                </h4>
+                <div class="list-group w-auto" id="finCarrito">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pide los datos del cliente -->
+        <div class="col-12 col-md-8 col-xl-8">
+            <!-- Acerca de ti -->
+            <h4> ACERCA DE TI </h4>
+            <div class="col-12 py-2">
+                <label for="inputEmail4" class="form-label"> Correo Electronico </label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="row">
+                <div class="col-6 py-2">
+                    <label for="inputEmail4" class="form-label"> Nombre </label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="col-6 py-2">
+                    <label for="inputPassword4" class="form-label"> Apellido </label>
+                    <input type="text" class="form-control" id="inputPassword4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 py-2">
+                    <label for="inputAddress" class="form-label"> Documento </label>
+                    <input type="number" class="form-control" id="inputAddress">
+                </div>
+                <div class="col-6 py-2">
+                    <label for="inputCity" class="form-label"> N° de telefono </label>
+                    <input type="number" class="form-control" id="inputCity">
+                </div>
+            </div>
+
+            <!-- Metodos de envio -->
+            <h4 class="py-2"> MÉTODOS DE ENVÍO </h4>
+            <div class="list-group list-group-radio d-grid gap-2 border-0 w-auto py-2">
+                <div class="row">
+                    <!-- Envio a domicilio -->
+                    <div class="col-6 position-static" href="#collapseenvio" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseenvio">
+                        <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5 metodoenvio" type="radio" name="metododeenvio" id="enviodomicilio" value="1" checked onclick="opcionEnvio()">
+                        <label class="list-group-item py-3 pe-5" for="enviodomicilio">
+                            <strong class="fw-semibold"> Envio a domicilio </strong>
+                            <span class="d-block small"> Recibilo dentro de los 3-4 días </span>
+                            <span class="d-block small"> $350 </span>
+                        </label>
+                    </div>
+                
+                    <!-- Retiro en tienda -->
+                    <div class="col-6 position-static">
+                        <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5 metodoenvio" type="radio" name="metododeenvio" id="retirotienda" value="2" checked onclick="opcionEnvio()">
+                        <label class="list-group-item py-3 pe-5" for="retirotienda">
+                            <strong class="fw-semibold"> Retiro en tienda </strong>
+                            <span class="d-block small"> Retiralo de 8 a 18 hs </span>
+                            <span class="d-block small"> Gratis </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Collapse que se abre para envio a domicilio -->
+            <div class="collapse" id="collapseenvio">
+                <div class="card card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-xl-8 py-2">
+                            <label for="inputEmail4" class="form-label"> Dirección </label>
+                            <input type="text" class="form-control" id="inputEmail4">
+                        </div>
+                        <div class="col-4 col-md-4 col-xl-4 py-2">
+                            <label for="inputEmail4" class="form-label"> Número </label>
+                            <input type="number" class="form-control" id="inputEmail4">
+                        </div>
+                    
+                        <div class="col-4 col-md-3 col-xl-3 py-2">
+                            <label for="inputPassword4" class="form-label"> Piso </label>
+                            <input type="text" class="form-control" id="inputPassword4">
+                        </div>
+                        <div class="col-4 col-md-3 col-xl-3 py-2">
+                            <label for="inputPassword4" class="form-label"> Departamento </label>
+                            <input type="text" class="form-control" id="inputPassword4">
+                        </div>
+                        <div class="col-8 col-md-4 col-xl-4 py-2">
+                            <label for="inputState" class="form-label"> Barrio </label>
+                            <select id="inputState" class="form-select">
+                                <option selected> Seleccionar... </option>
+                                <option> Agronomía </option>
+                                <option> Almagro </option>
+                                <option> Balvanera </option>
+                                <option> Barracas </option>
+                                <option> Belgrano </option>
+                                <option> Boedo </option>
+                                <option> Caballito </option>
+                                <option> Chacarita </option>
+                                <option> Coghlan </option>
+                                <option> Colegiales </option>
+                                <option> Constitución </option>
+                                <option> Flores </option>
+                                <option> Floresta </option>
+                                <option> La Boca </option>
+                                <option> La Paternal </option>
+                                <option> Linies </option>
+                                <option> Mataderos </option>
+                                <option> Monte Castro </option>
+                                <option> Montserrat </option>
+                                <option> Nueva Pompeya </option>
+                                <option> Nuñez </option>
+                                <option> Palermo </option>
+                                <option> Parque Avellaneda </option>
+                                <option> Parque Chacabuco </option>
+                                <option> Parque Chas </option>
+                                <option> Parque Patricios </option>
+                                <option> Puerto Madero </option>
+                                <option> Recoleta </option>
+                                <option> Retiro </option>
+                                <option> Saavedra </option>
+                                <option> San Cristóbal </option>
+                                <option> San Nicolás </option>
+                                <option> San Telmo </option>
+                                <option> Versalles </option>
+                                <option> Villa Crespo </option>
+                                <option> Villa Devoto </option>
+                                <option> Villa General Mitre </option>
+                                <option> Villa Lugano </option>
+                                <option> Villa Luro </option>
+                                <option> Villa Ortúzar </option>
+                                <option> Villa Pueyrredón </option>
+                                <option> Villa Real </option>
+                                <option> Villa Riachuelo </option>
+                                <option> Villa Santa Rita </option>
+                                <option> Villa Soldati </option>
+                                <option> Villa Urquiza </option>
+                                <option> Villa del Parque </option>
+                                <option> Vélez Sarfield </option>
+                            </select>
+                        </div>
+                        <div class="col-4 col-md-2 col-xl-2 py-2">
+                            <label for="inputPassword4" class="form-label"> C.P. </label>
+                            <input type="number" class="form-control" id="inputPassword4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Metodos de pago -->
+            <h4 class="py-2"> MÉTODOS DE PAGO </h4>
+            <div class="list-group list-group-radio d-grid gap-2 border-0 w-auto">
+                <!-- Metodo tarjeta -->
+                <div class="position-relative" href="#collapsepago" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapsepago">
+                    <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="metododepago" id="pagotarjeta" value="" checked>
+                    <label class="list-group-item py-3 pe-5" for="pagotarjeta">
+                        <strong class="fw-semibold"> Tarjeta de crédito / débito </strong>
+                        <span class="d-block small"> <img src="Imagenes/visa.png" width="3%"> <img src="Imagenes/american express.png" width="3%"> <img src="Imagenes/mastercard.jpg" width="3%"> <img src="Imagenes/mercado pago.jpg" width="3%"> </span>
+                    </label>
+                </div>
+
+                <!-- Collapse que se abre para pedir datos de la tarjeta -->
+                <div class="collapse" id="collapsepago">
+                    <div class="card card-body">
+                        <div class="row gy-3">
+                            <div class="col-md-4 col-xl-4 col-6">
+                                <label for="cc-name" class="form-label"> Nombre del titular </label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="">
+                            </div>
+                            <div class="col-md-4 col-xl-4 col-6">
+                                <label for="cc-number" class="form-label"> Número de tarjeta </label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="">
+                            </div>
+                            <div class="col-md-2 col-xl-2 col-6">
+                                <label for="cc-expiration" class="form-label"> Vencimiento </label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="">
+                            </div>
+                            <div class="col-md-2 col-xl-2 col-6">
+                                <label for="cc-cvv" class="form-label"> CVV </label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metodo transferencia bancaria -->
+                <div class="position-relative">
+                    <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="metododepago" id="pagotransferencia" value="">
+                    <label class="list-group-item py-3 pe-5" for="pagotransferencia">
+                        <strong class="fw-semibold"> Transferencia Bancaria </strong>
+                        <span class="d-block small"> Enviaremos los datos por correo electrónico </span>
+                    </label>
+                </div>
+
+                <!-- Metodo efectivo -->
+                <div class="position-relative">
+                    <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="metododepago" id="pagoefectivo" value="">
+                    <label class="list-group-item py-3 pe-5" for="pagoefectivo">
+                        <strong class="fw-semibold"> Efectivo </strong>
+                        <span class="d-block small"> <img src="Imagenes/rapipago.png" width="3%"> <img src="Imagenes/pago facil.png" width="3%"> </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Boton de finalizar compra -->
+    <div class="d-grid gap-2 py-2">
+        <button type="submit" class="btn btn-primary"> REALIZAR PEDIDO </button>
+    </div>
+</main>
+
+<!-- --------------------------------------------- FOOTER --------------------------------------------- -->
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <img class="bi" width="24" height="24" src="Imagenes/carlos ruiz zafon.jpg">
+            </a>
+            <span class="mb-3 mb-md-0 text-muted"> info@zafon.com </span>
+        </div>
+        
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3">
+                <a class="text-muted" href="https://www.instagram.com/zafonoficial/">
+                    <img class="bi" width="24" height="24" src="Imagenes/instagram.svg"/>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-muted" href="#">
+                    <img class="bi" width="24" height="24" src="Imagenes/whatsapp.svg">
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-muted" href="https://twitter.com/zafonoficial?lang=es">
+                    <img class="bi" width="24" height="24" src="Imagenes/twitter.svg">
+                </a>
+            </li>
+        </ul>
+    </footer>
+</div> <!-- div del container -->
+<script src="carrito.js" type="module"></script>
+</body>
+</html>

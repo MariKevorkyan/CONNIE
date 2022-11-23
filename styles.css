@@ -1,0 +1,37 @@
+a {
+    /*text-decoration: none;*/
+    color:black
+}
+
+.letravioleta {
+    color: #c09af5!important;
+}
+
+.fondovioleta {
+    background-color: #c09af5;
+}
+
+.btn-primary {
+    background-color: #c09af5;
+    border: #c09af5;
+    --bs-btn-hover-bg:#d5bcf7;
+    --bs-btn-hover-border-color:#d5bcf7;
+    --bs-btn-active-bg: #d5bcf7;
+    --bs-btn-active-border-color: white;
+}
+
+/* PARA LA PARTE DEL CARRITO EN INDEX QUE SCROLEE */
+@media screen and (max-width: 768px) {
+    #compras {
+        overflow-y: scroll;
+        max-height: 260px;
+    }
+}
+
+/* PARA BOTON DE FINALIZAR COMPRA EN OFF CANVAS */
+.fincompra {
+    position: absolute;
+    bottom: 8px;
+    width: 92%!important;
+    align-self: center;
+}
